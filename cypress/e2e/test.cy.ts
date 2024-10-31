@@ -53,18 +53,16 @@ describe('Forms Login', function () {
         // Paso 2: Haz clic en el botón para realizar la búsqueda
         cy.xpath('/html/body/form/div[3]/div[2]/div[1]/div[3]/div/div[2]/fieldset/div[3]/input[2]').click();
 
-        // Paso 3: Verifica que el modal de error esté visible
-        cy.get('body').should('have.class', 'home loading modal-open');
+        cy.get('div[class="modal-dialog"]')
+            .should('be.visible')
+            .within(() => {
+                cy.get('div[class="bootstrap-dialog-message"]') 
+                .should('contain.text', 'Debe digitar el nombre del documento que desea buscar.');;
 
-        // Paso 4: Verificar que el modal esté visible
-        cy.xpath('/html/body/div[5]/div').should('exist').find('/html/body/div[7]/div/div/div[1]/div/div[1]/button').click();
-        cy.wait(500);
+                cy.get('button[class="btn btn-red"]').click(); 
+            });
 
-        // Paso 5: Haz clic en el botón de aceptar el mensaje de error
-        cy.xpath('/html/body/div[7]/div/div/div[1]/div/div[1]/button').click();
-
-        // Resultado esperado: El modal debe cerrarse y no debe haber más mensajes de error visibles.
-        cy.xpath('/html/body/div[7]/div').should('not.exist');
+        cy.get('div[class="modal-dialog"]').should('not.exist');
     });
 
 });
