@@ -10,7 +10,7 @@ describe('Forms Login', function () {
         cy.visit('https://www.munisc.go.cr/Paginas/Visitantes/Documentos.aspx');
     });
 
-    // Configuración despues de cada prueba
+    // Configuración después de cada prueba
     afterEach(function () {
         cy.reload(); // Recargar la página después de cada prueba
     });
@@ -50,18 +50,22 @@ describe('Forms Login', function () {
         // Paso 2: Introduce el término "" en el campo de búsqueda
         cy.xpath('/html/body/form/div[3]/div[2]/div[1]/div[3]/div/div[2]/fieldset/div[3]/input[1]').should('have.text','');
 
-        // Paso 2: Haz clic en el botón para realizar la búsqueda
+        // Paso 3: Haz clic en el botón para realizar la búsqueda
         cy.xpath('/html/body/form/div[3]/div[2]/div[1]/div[3]/div/div[2]/fieldset/div[3]/input[2]').click();
 
+        // Paso 4: Verifica que el modal de error es visible
         cy.get('div[class="modal-dialog"]')
             .should('be.visible')
             .within(() => {
+                // Paso 5: Verifica que el mensaje de error es el esperado
                 cy.get('div[class="bootstrap-dialog-message"]') 
-                .should('contain.text', 'Debe digitar el nombre del documento que desea buscar.');;
+                .should('contain.text', 'Debe digitar el nombre del documento que desea buscar.');
 
+                // Paso 6: Haz clic en el botón para cerrar el modal
                 cy.get('button[class="btn btn-red"]').click(); 
             });
 
+        // Paso 7: Verifica que el modal ya no es visible
         cy.get('div[class="modal-dialog"]').should('not.exist');
     });
 

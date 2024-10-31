@@ -20,7 +20,7 @@ describe('Documentos y trámites', function () {
     // Prueba para descargar el primer documento del departamento Acueducto
     it('Decargar el primer documento del departamento Acueducto', function () {
         // Nombre de la prueba: Decargar el primer documento del departamento Acueducto
-        // Objetivo: Descargar el primer documento del departamento Acueducto.
+        // Objetivo: Verificar que se muestra una lista de resultados en la selección Acueducto y que se pueden descargar los documentos.
         // Datos de prueba: Selección del departamento "Acueducto".
         // Resultado esperado: El documento se descargará exitosamente.
 
@@ -39,7 +39,7 @@ describe('Documentos y trámites', function () {
     // Prueba para notificar al usuario cuando no hay documentos disponibles
     it('Notificar al usuario cuando no hay documentos disponibles', function () {
         // Nombre de la prueba: Notificar al usuario cuando no hay documentos disponibles
-        // Objetivo: Verificar que se muestra un mensaje de error cuando no hay documentos disponibles.
+        // Objetivo: Verificar que se muestra un mensaje al usuario cuando no hay documentos disponibles.
         // Datos de prueba: Selección del departamento "Administración".
         // Resultado esperado: Se debe mostrar un mensaje de error indicando que no hay documentos disponibles.
 
